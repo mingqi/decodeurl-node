@@ -7,7 +7,6 @@ to_chinese = (buff) ->
     unicode = us.map [0...str.length], (i) ->
       str.charCodeAt(i)
     us.every unicode, (u) ->
-      console.log u
       result = us.some [
         0x00 <= u <= 0x7F        # ASCII
         0x3400 <= u <= 0x4DB5    # U+3400..U+4DB5 CJK Unified Ideographs Extension A
@@ -21,9 +20,9 @@ to_chinese = (buff) ->
         0x2E80 <= u <= 0x2EFF    # CJK部首补充：2E80-2EFF
         0x3000 <= u <= 0x303F    # CJK标点符号：3000-303F
         0x31C0 <= u <= 0x31EF    # CJK笔划：31C0-31EF
+        u in [0x2018, 0x2019, 0x201D, 0x201D] #  UCS quote: http://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html
       ]
 
-      console.log result
       return result
     
 
