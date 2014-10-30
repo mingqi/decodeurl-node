@@ -1,15 +1,26 @@
 iconv = require 'iconv-lite'
+us = require 'underscore'
 
 to_chinese = (buff) ->
   _every_is_chinese = (str) ->
-    is_chinese = true
-    for i in [0...str.length]
-      char_code = str.charCodeAt(i)
-      if not (0 < char_code < 128 or 19968 <= char_code <= 40869)
-        is_chinese = false
-        break
-
-    return is_chinese
+    # the CJK unicode refer to http://www.unicode.org/Public/5.0.0/ucd/Unihan.html
+    unicode = us.map [0...str.length], (i) ->
+      str.charCodeAt(i)
+    us.every unicode, (u) ->
+      us.some [
+        0x3400 <= u <= 0x4DB5    # U+3400..U+4DB5 CJK Unified Ideographs Extension A
+        0x4E00 <= u <= 0x9FBB    # U+4E00..U+9FBB CJK Unified Ideographs
+        0xF900 <= u <= 0xFA2D    # U+F900..U+FA2D CJK Compatibility Ideographs
+        0xFA30 <= u <= 0xFA6A    # U+FA30..U+FA6A CJK Compatibility Ideographs
+        0xFA70 <= u <= 0xFAD9    # U+FA70..U+FAD9 CJK Compatibility Ideographs
+        0x20000 <= u <= 0x2A6D6  # U+20000..U+2A6D6 CJK Unified Ideographs Extension B
+        0x2F800 <= u <= 0x2FA1D  # U+2F800..U+2FA1D  CJK Compatibility Supplement
+        0xFF00 <= u <= 0xFFEF    # FF00-FFEF: 全角ASCII、全角中英文标点、半宽片假名、半宽平假名、半宽韩文字母
+        0x2E80 <= u <= 0x2EFF    # CJK部首补充：2E80-2EFF
+        0x3000 <= u <= 0x303F    # CJK标点符号：3000-303F
+        0x31C0 <= u <= 0x31EF    # CJK笔划：31C0-31EF
+      ]
+    
 
   str = iconv.decode(buff, 'utf-8') 
   return str if _every_is_chinese(str)
@@ -18,7 +29,6 @@ to_chinese = (buff) ->
   return str if _every_is_chinese(str)
 
   return null
-
 
 module.exports = decodeurl = (str) ->
   r = /(%[0-9A-Fa-f]{2})+/g
