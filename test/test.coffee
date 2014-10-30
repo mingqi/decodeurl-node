@@ -1,9 +1,4 @@
-# decode_url = require '../decodeurl.coffee'
-us = require 'underscore'
-
-a = 'abc'
-us.map a, (i) ->
-  console.log i
+decode_url = require '../decodeurl.coffee'
 
 
 
@@ -26,6 +21,12 @@ us.map a, (i) ->
 # a = """
 # 101.226.89.123 - - [30/Oct/2014:12:11:27 +0800] "GET /log/detail.html?url=http://www.tushucheng.com/book/4902457.html&referer=http://www.sogou.com/sogou?pid=Af99046&query=%D4%DAfldlc%CC%F5%BC%FE%CF%C2%B9%CD%D6%F7%A1%A2%B9%A4%B3%CC%CA%A6%BC%B0%B3%D0%B0%FC%C9%CC%B5%C4%C8%A8%C1%A6%D3%EB%D6%B0%D4%F0&p=50040111&oq=&ri=-2&d=1414640594837&type=DT&detailPage&bookId=4902457&userid=0 HTTP/1.1" 200 0 "http://www.tushucheng.com/book/4902457.html" "Mozilla/4.0"
 # """
+a = """
+60.2.52.18 - - [30/Oct/2014:13:38:04 +0800] "GET /log/detail.html?url=http%3A%2F%2Fwww.tushucheng.com%2Faw%2Fbook%2F1806088.html&referer=http%3A%2F%2Fm.sp.sm.cn%2Fs%3Fq%3D%25E5%25B9%25B3%25E9%259D%25A2%25E4%25B8%258E%25E5%259B%259E%25E8%25BD%25AC%25E4%25BD%2593%25E7%259B%25B8%25E4%25BA%25A4%25EF%25BC%2588%25E7%25BB%25AD%25EF%25BC%25896%25E5%25AE%258C%25E6%2588%2590%25E4%25BF%25AF%25E8%25A7%2586%25E5%259B%25BE%25EF%25BC%258C%25E5%25B9%25B6%25E4%25BD%259C%25E5%25B7%25A6%25E8%25A7%2586%25E5%259B%25BE%26uc_param_str%3Ddnntnwvepffrgibijbpr%26from%3Ducframe%26by%3Dsubmit%26snum%3D0&d=1414647480564&default HTTP/1.1" 200 0 "http://www.tushucheng.com/aw/book/1806088.html" "Mozilla/5.0 (Linux; U; Android 4.3; zh-CN; R831S Build/JLS36C) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 UCBrowser/9.9.6.495 U3/0.8.0 Mobile Safari/533.1"
+"""
+# a = """
+# 60.2.52.18 - - [30/Oct/2014:13:38:04 +0800] "GET /log/detail.html?url=http%3A%2F%2F
+# """
 
 # a = "%CC%F5%BC%FE%CF%C2%B9%CD%D6%F7%A1%A2%B9%A4%B3%CC%CA%A6%BC%B0%B3%D0%B0%FC%C9%CC%B5%C4%C8%A8%C1%A6%D3%EB%D6%B0%D4%F0"
-# console.log  decode_url(a)
+console.log decode_url decode_url(a)
