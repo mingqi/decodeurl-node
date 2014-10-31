@@ -11,10 +11,11 @@
     "url": "https://github.com/mingqi/decodeurl-node.git"
   },
   "main": "decodeurl.js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "dependencies": {
     "underscore" : "*",
-    "iconv-lite" : "*"
+    "iconv-lite" : "*",
+    "jschardet" : "*"
   },
   "licenses": [
     {

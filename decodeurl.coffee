@@ -1,4 +1,5 @@
 iconv = require 'iconv-lite'
+jschardet = require 'jschardet'
 us = require 'underscore'
 
 to_chinese = (buff) ->
@@ -9,6 +10,7 @@ to_chinese = (buff) ->
     us.every unicode, (u) ->
       result = us.some [
         0x00 <= u <= 0xFF        # ASCII and common Latin
+        0x2000 <= u <= 0x206F    # General Punctuation
         0x3400 <= u <= 0x4DB5    # U+3400..U+4DB5 CJK Unified Ideographs Extension A
         0x4E00 <= u <= 0x9FBB    # U+4E00..U+9FBB CJK Unified Ideographs
         0xF900 <= u <= 0xFA2D    # U+F900..U+FA2D CJK Compatibility Ideographs
@@ -22,9 +24,13 @@ to_chinese = (buff) ->
         0x31C0 <= u <= 0x31EF    # CJK笔划：31C0-31EF
         u in [0x2018, 0x2019, 0x201D, 0x201D] #  UCS quote: http://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html
       ]
-      # console.log "u=#{u}, result=#{result}"
+      console.log "u=#{u}, result=#{result}"
       return result
     
+
+  detect_encoding = jschardet.detect buff
+  if detect_encoding?.confidence >= 0.98
+    return iconv.decode(buff, detect_encoding.encoding)
 
   str = iconv.decode(buff, 'utf-8') 
   # console.log "utf-8: #{str}"
