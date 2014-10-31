@@ -24,12 +24,13 @@ to_chinese = (buff) ->
         0x31C0 <= u <= 0x31EF    # CJK笔划：31C0-31EF
         u in [0x2018, 0x2019, 0x201D, 0x201D] #  UCS quote: http://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html
       ]
-      console.log "u=#{u}, result=#{result}"
+      # console.log "u=#{u}, result=#{result}"
       return result
     
 
   detect_encoding = jschardet.detect buff
   if detect_encoding?.confidence >= 0.98
+    # console.log detect_encoding
     return iconv.decode(buff, detect_encoding.encoding)
 
   str = iconv.decode(buff, 'utf-8') 

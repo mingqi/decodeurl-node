@@ -48,4 +48,5 @@ a = """
 # a = """
 # %E4%B8%BA%E7%88%B1%E7%96%AF%E7%8B%82%E2%80%94%E2%80%94%E8%8B%8F%E6%A0%BC%E5%85%B0%E5%A5%B3%E7%8E%8B%E7%8E%9B%E4%B8%BD%C2%B7%E6%96%AF%E5%9B%BE%E4%BA%9A%E7%89%B9%E4%BC%A0
 # """
+a = '%CE%DE'
 console.log decode_url decode_url(a)

@@ -22,7 +22,6 @@
       return us.every(unicode, function(u) {
         var result;
         result = us.some([(0x00 <= u && u <= 0xFF), (0x2000 <= u && u <= 0x206F), (0x3400 <= u && u <= 0x4DB5), (0x4E00 <= u && u <= 0x9FBB), (0xF900 <= u && u <= 0xFA2D), (0xFA30 <= u && u <= 0xFA6A), (0xFA70 <= u && u <= 0xFAD9), (0x20000 <= u && u <= 0x2A6D6), (0x2F800 <= u && u <= 0x2FA1D), (0xFF00 <= u && u <= 0xFFEF), (0x2E80 <= u && u <= 0x2EFF), (0x3000 <= u && u <= 0x303F), (0x31C0 <= u && u <= 0x31EF), u === 0x2018 || u === 0x2019 || u === 0x201D || u === 0x201D]);
-        console.log("u=" + u + ", result=" + result);
         return result;
       });
     };
