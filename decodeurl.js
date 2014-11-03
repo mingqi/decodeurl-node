@@ -26,7 +26,7 @@
       });
     };
     detect_encoding = jschardet.detect(buff);
-    if ((detect_encoding != null ? detect_encoding.confidence : void 0) >= 0.98) {
+    if ((detect_encoding != null ? detect_encoding.confidence : void 0) >= 0.98 && iconv.encodingExists(detect_encoding.encoding)) {
       return iconv.decode(buff, detect_encoding.encoding);
     }
     str = iconv.decode(buff, 'utf-8');

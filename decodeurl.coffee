@@ -29,7 +29,7 @@ to_chinese = (buff) ->
     
 
   detect_encoding = jschardet.detect buff
-  if detect_encoding?.confidence >= 0.98
+  if detect_encoding?.confidence >= 0.98 and iconv.encodingExists(detect_encoding.encoding)
     # console.log detect_encoding
     return iconv.decode(buff, detect_encoding.encoding)
 
